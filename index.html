@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script>
+(function(){var p=document.createElement('link');p.rel='preconnect';p.href='https://fonts.gstatic.com';p.crossOrigin='';document.head.appendChild(p);var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Yomogi&display=swap';document.head.appendChild(l);})();
+</script>
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{background:#0a1620;font-family:'Zen Kaku Gothic New',sans-serif;color:#14181c;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,p,span,div,a,button,li{word-break:auto-phrase;line-break:strict}
+  ::-webkit-scrollbar{width:0;height:0}
+  @keyframes hy-fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes hy-kenburns{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.16) translateY(-2.5%)}}
+  @media (prefers-reduced-motion:reduce){.hy-kb{animation:none !important}}
+  @keyframes hy-glow{0%,100%{opacity:.5}50%{opacity:.9}}
+  @keyframes hy-grain{0%{transform:translate(0,0)}25%{transform:translate(-4%,2%)}50%{transform:translate(3%,-3%)}75%{transform:translate(-2%,4%)}100%{transform:translate(0,0)}}
+  @keyframes hy-dust{0%{transform:translateY(0);opacity:0}12%{opacity:.7}100%{transform:translateY(-56px) translateX(12px);opacity:0}}
+  .hy-grain{position:absolute;inset:-30%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.15;pointer-events:none}
+  @keyframes hi-backin{from{opacity:0}to{opacity:1}}
+  @keyframes hi-bloom{0%{opacity:0;transform:translateX(-50%) scale(.3)}30%{opacity:.9}100%{opacity:.55;transform:translateX(-50%) scale(1.15)}}
+  @keyframes hi-flash{0%{opacity:0}7%{opacity:1}45%{opacity:0}100%{opacity:0}}
+  @keyframes hi-shock{0%{opacity:.75;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)}}
+  @keyframes hi-starpop{0%{opacity:0;transform:scale(0) rotate(-22deg)}62%{opacity:1;transform:scale(1.16) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+  @keyframes hi-rise{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes hi-spirit{0%{opacity:0;letter-spacing:.5em}100%{opacity:1;letter-spacing:.14em}}
+  @keyframes hi-mote{0%{opacity:0;transform:translateY(0) scale(.5)}25%{opacity:.95}100%{opacity:0;transform:translateY(-190px) scale(1.1)}}
+  @keyframes hi-confetti{0%{opacity:0;transform:translateY(-20px) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translateY(260px) rotate(400deg)}}
+  @keyframes hi-tower{0%{opacity:0}100%{opacity:.9}}
+  @keyframes hi-reveal{0%{opacity:0}100%{opacity:1}}
+  @media (prefers-reduced-motion: reduce){ .hi-anim *{animation-duration:.001s !important;animation-delay:0s !important} }
+</style>
+</helmet>
+<div style="--ac:{{ ac }};--acd:{{ acd }};max-width:430px;margin:0 auto;min-height:100vh;background:#ffffff;position:relative;box-shadow:0 0 70px rgba(0,0,0,.5)">
+
+  <!-- ===== HEADER ===== -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.2) blur(10px);background:{{ headerBg }};border-bottom:1px solid {{ headerBorder }};transition:all .3s ease">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:{{ headerPad }};transition:padding .3s ease">
+      <button onClick="{{ toggleMenu }}" aria-label="menu" style="background:rgba(14,42,64,.06);border:none;width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;cursor:pointer">
+        <span style="width:18px;height:2px;background:#0e2a40;border-radius:2px;display:block"></span>
+        <span style="width:18px;height:2px;background:#0e2a40;border-radius:2px;display:block"></span>
+        <span style="width:12px;height:2px;background:var(--ac);border-radius:2px;display:block"></span>
+      </button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <img src="assets/hayato-logo.png" alt="隼人CLUB" style="height:{{ markSize }};width:auto;display:block;transition:height .3s ease" />
+        <div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:15px;letter-spacing:.08em;color:#0e2a40">隼人CLUB</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="position:relative"><span style="font-size:18px">🔔</span><span style="position:absolute;top:-1px;right:-1px;width:7px;height:7px;border-radius:50%;background:#E0913B"></span></div>
+        <img src="assets/badge-shusho.png" alt="五段・主将" style="width:51px;height:51px;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))" />
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav style="padding:4px 18px 16px;display:flex;flex-direction:column;gap:2px;animation:hy-fadeup .25s ease">
+        <a href="#v-realize" onClick="{{ closeMenu }}" style="padding:13px 8px;border-bottom:1px solid #eef4f8;text-decoration:none;color:#0e2a40;font-weight:700;font-size:15px;display:flex;justify-content:space-between">人生を整える<span style="color:var(--ac)">›</span></a>
+        <a href="#v-studio" onClick="{{ closeMenu }}" style="padding:13px 8px;border-bottom:1px solid #eef4f8;text-decoration:none;color:#0e2a40;font-weight:700;font-size:15px;display:flex;justify-content:space-between">水谷監督から学ぶ<span style="color:var(--ac)">›</span></a>
+        <a href="#v-store" onClick="{{ closeMenu }}" style="padding:13px 8px;text-decoration:none;color:#0e2a40;font-weight:700;font-size:15px;display:flex;justify-content:space-between">ECサイトで買い物をする<span style="color:var(--ac)">›</span></a>
+      </nav>
+    </sc-if>
+  </header>
+
+  <!-- ===== HERO (logged-in) ===== -->
+  <section data-screen-label="ヒーロー" id="v-home" style="position:relative;overflow:hidden;background:#0e2a40">
+    <img src="assets/hero-field.png" alt="グラウンド" class="hy-kb" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;transform-origin:center 35%;animation:hy-kenburns 16s ease-in-out infinite alternate" />
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,39,64,.05) 0%,rgba(10,28,44,.3) 55%,rgba(8,20,30,.84) 100%)"></div>
+    <div style="position:relative;min-height:430px;display:flex;flex-direction:column;justify-content:flex-end">
+
+      <!-- overlay: login + rank card -->
+      <div style="position:relative;z-index:2;padding:0 16px 18px;display:flex;gap:11px;align-items:stretch">
+        <div style="background:rgba(10,26,40,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;text-align:center;color:#fff;flex:none;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:8.5px;letter-spacing:.18em;color:#bcd6e8">連続ログイン</div>
+          <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:30px;line-height:1.05">18</div>
+          <div style="font-size:9px;color:#bcd6e8;letter-spacing:.1em">DAYS</div>
+        </div>
+        <div style="flex:1;background:rgba(10,26,40,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;color:#fff;display:flex;align-items:center;gap:12px">
+          <img src="assets/badge-shusho.png" alt="五段・主将" style="width:52px;height:52px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))" />
+          <div style="flex:1">
+            <div style="font-size:8.5px;letter-spacing:.18em;color:#bcd6e8;margin-bottom:2px">現在の階級</div>
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:18px;letter-spacing:.04em">五段・主将 <span style="font-size:11px;font-weight:600;color:#bcd6e8">大志</span></div>
+            <div style="height:5px;border-radius:4px;background:rgba(255,255,255,.2);margin-top:7px;overflow:hidden"><div style="height:100%;border-radius:4px;background:var(--ac);width:{{ rankW }};transition:width 1.4s cubic-bezier(.2,.8,.2,1)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- unlock teaser -->
+    <div style="position:relative;z-index:2;margin:0 16px 18px;display:flex;align-items:center;gap:12px;background:rgba(8,20,30,.82);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 15px">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--ac);display:flex;align-items:center;justify-content:center;flex:none"><div style="width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:12px solid #fff;margin-left:3px"></div></div>
+      <div style="flex:1;font-size:11.5px;line-height:1.55;color:#eaf3f9;font-weight:500">春・選抜の<span style="font-weight:700;color:#fff">決勝であと1勝</span>。<br>勝てば「<span style="font-weight:700;color:#ffe1b0">★ 春・選抜制覇</span>」が<br>解放されます。</div>
+      <span style="font-size:15px;opacity:.8">🔒</span>
+    </div>
+    <!-- wordmark + tagline -->
+    <div style="position:relative;z-index:2;padding:0 22px 30px;color:#fff">
+
+      <h1 style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:29px;line-height:1.42;margin:14px 0 0;letter-spacing:.03em;text-shadow:0 3px 20px rgba(0,0,0,.5)">球道即人道<span style="color:#ffe1b0">―</span><br>野球が教える<br><span style="color:#ffe1b0">人生の判断軸</span></h1>
+    </div>
+  </section>
+
+  <!-- ===== WELCOME ===== -->
+  <section style="background:#0e2a40;color:#fff;padding:38px 24px">
+    <a href="#v-studio" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ac);color:#fff;font-weight:700;font-size:16px;padding:17px;border-radius:14px;text-decoration:none;box-shadow:0 10px 24px rgba(46,155,214,.4);min-height:54px;letter-spacing:.03em">水谷監督の教えを見る <span style="font-size:17px">→</span></a>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px">
+      <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+        <a href="{{ q.href }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 15px;border-radius:13px;text-decoration:none;background:{{ q.bg }};border:1px solid rgba(255,255,255,.12)">
+          <span style="font-weight:700;font-size:13.5px;color:#fff">{{ q.label }}</span>
+          <span style="color:var(--ac);font-size:16px">›</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== MEMBER LICENSE ===== -->
+  <section data-screen-label="会員ライセンス" id="v-license" style="padding:32px 20px;background:#f6fafd">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.14em;color:#0e2a40">MEMBER LICENSE <span style="color:#7c93a4;font-weight:500">— 会員ライセンス</span></div>
+      <div style="font-size:10px;font-weight:700;color:var(--acd);display:flex;align-items:center;gap:4px">★ ALL ACCESS</div>
+    </div>
+    <div style="position:relative;aspect-ratio:1.586/1;border-radius:18px;overflow:hidden;padding:18px 20px;background:linear-gradient(135deg,#0c2237 0%,#123a5a 46%,#0e2a40 100%);border:1px solid rgba(245,207,148,.38);box-shadow:0 16px 38px rgba(14,42,64,.35),inset 0 1px 0 rgba(255,255,255,.14);display:flex;flex-direction:column;justify-content:space-between">
+      <div class="hy-grain" style="opacity:.08"></div>
+      <div style="position:absolute;top:-60%;left:-10%;width:80%;height:230%;background:linear-gradient(100deg,transparent 32%,rgba(255,255,255,.06) 45%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.06) 55%,transparent 68%);transform:rotate(8deg);pointer-events:none"></div>
+      <div style="position:relative;display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:52px;height:52px;border-radius:11px;background:#fff;display:flex;align-items:center;justify-content:center;padding:4px;flex:none"><img src="assets/hayato-logo-t.png" alt="隼人CLUB" style="width:100%;height:100%;object-fit:contain" /></div>
+          <div>
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:13.5px;color:#fff;letter-spacing:.08em;line-height:1">隼人CLUB</div>
+            <div style="font-size:7.5px;letter-spacing:.22em;color:#9fc0d6;margin-top:3px">会員証 ・ OFFICIAL MEMBER</div>
+          </div>
+        </div>
+        <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#f5cf94;border:1px solid rgba(245,207,148,.5);padding:4px 9px;border-radius:4px;white-space:nowrap">★ ALL ACCESS</div>
+      </div>
+      <div style="position:relative">
+        <div style="font-size:7.5px;letter-spacing:.22em;color:#9fc0d6">MEMBER NO.</div>
+        <div style="font-size:22px;font-weight:700;letter-spacing:.14em;color:#e9f2f8;margin-top:3px;text-shadow:0 1px 2px rgba(0,0,0,.55)">0001-0427</div>
+      </div>
+      <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end">
+        <div>
+          <div style="font-size:7.5px;letter-spacing:.22em;color:#9fc0d6">MEMBER</div>
+          <div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:17px;color:#fff;margin-top:3px">山田 太郎 <span style="font-size:11px;font-weight:500;color:rgba(255,255,255,.8)">様</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+            <div style="background:#fff;border-radius:4px;padding:3px 6px"><div style="width:92px;height:16px;background:repeating-linear-gradient(90deg,#12283a 0,#12283a 2px,transparent 2px,transparent 4px,#12283a 4px,#12283a 7px,transparent 7px,transparent 9px,#12283a 9px,#12283a 10px,transparent 10px,transparent 14px)"></div></div>
+            <div style="font-size:8.5px;letter-spacing:.14em;color:#9fc0d6">SINCE 2024</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:10px">
+          <div style="text-align:right">
+            <div style="font-size:7.5px;letter-spacing:.2em;color:#9fc0d6">RANK</div>
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:#f5cf94;letter-spacing:.06em;margin-top:2px">主将</div>
+          </div>
+          <img src="assets/badge-shusho.png" alt="主将" style="width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 2px 5px rgba(0,0,0,.45))" />
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:13px;background:#fff;border:1.5px solid #e2ecf3;border-radius:16px;padding:16px;box-shadow:0 3px 10px rgba(14,42,64,.05)">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#5b6b78;margin-bottom:5px"><span style="font-weight:700;color:#0e2a40">NEXT — ★ 春制覇</span><span style="font-weight:700;color:var(--acd)">65%</span></div>
+      <div style="height:7px;border-radius:5px;background:#e8f0f6;overflow:hidden"><div style="height:100%;border-radius:5px;background:var(--ac);width:{{ rankW }};transition:width 1.4s cubic-bezier(.2,.8,.2,1)"></div></div>
+      <div style="display:flex;gap:22px;margin-top:14px;padding-top:13px;border-top:1px solid #eef4f8">
+        <div><div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:#0e2a40">12</div><div style="font-size:9px;color:#7c93a4">学び</div></div>
+        <div><div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:#0e2a40">2,480</div><div style="font-size:9px;color:#7c93a4">育成POINTS</div></div>
+        <div><div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:#0e2a40">18</div><div style="font-size:9px;color:#7c93a4">連続ログイン</div></div>
+        <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;gap:7px">
+          <span style="font-size:10px;font-weight:700;color:var(--acd);background:#eef6fb;border:1px solid #cfe6f5;padding:5px 10px;border-radius:20px">▲ 凡事</span>
+          <span style="font-size:10px;font-weight:700;color:var(--acd);background:#eef6fb;border:1px solid #cfe6f5;padding:5px 10px;border-radius:20px">▲ 育成者</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 今月のことば ===== -->
+  <section style="position:relative;padding:34px 24px;background:linear-gradient(170deg,#0e2a40,#0a1c2c);color:#fff;overflow:hidden">
+    <div class="hy-grain" style="opacity:.08"></div>
+    <div style="position:relative">
+      <div style="font-family:'Yomogi',cursive;font-size:12px;color:#7fc4e8;margin-bottom:14px">今月の、ことば</div>
+      <p style="font-family:'Shippori Mincho B1',serif;font-weight:600;font-size:23px;line-height:1.7;margin:0;letter-spacing:.04em">誰も見ていない時に、<br>何をするか。<span style="color:var(--ac)">― 至誠</span></p>
+      <div style="font-size:11px;color:#9fc0d6;margin-top:14px">Team・HAYATOの精神より</div>
+    </div>
+  </section>
+
+  <!-- ===== 会員限定メッセージ ===== -->
+  <section style="padding:30px 20px;background:#fff">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:700;color:#0e2a40;font-family:'Shippori Mincho B1',serif">会員限定メッセージ</div>
+      <a href="#v-bonus" style="font-size:11px;color:var(--acd);font-weight:700;text-decoration:none">すべて ›</a>
+    </div>
+    <a href="#v-bonus" style="display:block;text-decoration:none;position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#1d6fa3,#0a1c2c);min-height:200px;box-shadow:0 10px 24px rgba(14,42,64,.18)">
+      <img src="assets/msg-mizutani.jpg" alt="今月のメッセージ" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%" />
+      <div class="hy-grain" style="opacity:.12"></div>
+      <div style="position:absolute;top:12px;left:12px;display:flex;gap:8px"><span style="background:var(--ac);color:#fff;font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:6px">会員限定</span><span style="background:rgba(8,20,30,.6);color:#fff;font-size:9.5px;font-weight:600;padding:4px 9px;border-radius:6px">03:24</span></div>
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.3)"><div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid #0e2a40;margin-left:4px"></div></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(to top,rgba(8,20,30,.92),transparent)">
+        <div style="color:#fff;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:16px">今月のメッセージ｜第2ステージの整え方</div>
+        <div style="color:rgba(255,255,255,.85);font-size:11px;line-height:1.6;margin-top:6px">立ち止まっている人へ。もう一度、自分のグラウンドを整えるために。</div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ===== VERSE 01 — 今日のメニュー ===== -->
+  <section data-screen-label="今日のメニュー" style="padding:34px 20px;background:#f6fafd">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;letter-spacing:.06em;padding:5px 9px;border-radius:5px">1回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7c93a4;font-weight:600">TODAY'S MENU</span></div>
+    <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0 0 18px;color:#0e2a40">今日のメニュー</h2>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+        <a href="#v-realize" style="display:flex;align-items:center;gap:14px;padding:16px;background:#fff;border:1.5px solid #e2ecf3;border-radius:14px;text-decoration:none;box-shadow:0 3px 10px rgba(14,42,64,.05)">
+          <div style="width:40px;height:40px;border-radius:11px;background:{{ t.iconbg }};display:flex;align-items:center;justify-content:center;font-size:19px;flex:none">{{ t.icon }}</div>
+          <div style="flex:1">
+            <div style="font-weight:700;font-size:14.5px;color:#0e2a40">{{ t.title }}</div>
+            <div style="font-size:11px;color:#5b6b78;margin-top:3px;display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:700;color:var(--acd);border:1px solid #cfe6f5;padding:2px 6px;border-radius:5px">報酬 {{ t.reward }}</span>{{ t.sub }}</div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:{{ t.stColor }};white-space:nowrap">{{ t.status }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 02 — 人生を整える ===== -->
+  <section data-screen-label="人生を整える" id="v-realize" style="position:relative;padding:38px 22px;background:linear-gradient(170deg,#0e2a40,#0a1c2c);color:#fff;overflow:hidden">
+    <div class="hy-grain" style="opacity:.07"></div>
+    <div style="position:relative">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">2回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7fc4e8;font-weight:600">REALIZE CLUB</span></div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:32px;margin:0 0 10px;letter-spacing:.04em">人生を整える</h2>
+      <p style="font-size:13px;line-height:1.85;color:#cfe0ec;margin:0 0 22px;font-weight:500">このCLUBの中心。学びを、実際の人生設計へ。<br>診断・シミュレーション・設計書で、<br>あなたの「今」と「これから」を見える化します。</p>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:20px;display:flex;align-items:center;gap:20px;margin-bottom:18px">
+        <svg width="104" height="104" viewBox="0 0 104 104" style="flex:none">
+          <circle cx="52" cy="52" r="44" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="9"></circle>
+          <circle cx="52" cy="52" r="44" fill="none" stroke="var(--ac)" stroke-width="9" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="{{ scoreOffset }}" transform="rotate(-90 52 52)" style="transition:stroke-dashoffset 1.5s cubic-bezier(.2,.8,.2,1)"></circle>
+          <text x="52" y="50" text-anchor="middle" font-family="'Shippori Mincho B1',serif" font-weight="800" font-size="30" fill="#fff">68</text>
+          <text x="52" y="68" text-anchor="middle" font-size="10" fill="#9fc0d6">スコア</text>
+        </svg>
+        <div>
+          <div style="font-weight:700;font-size:16px;font-family:'Shippori Mincho B1',serif">総合ライフスコア</div>
+          <div style="font-size:11.5px;line-height:1.7;color:#bcd6e8;margin-top:5px">お金・住まい・万が一・老後・災害・健康の整い度を1つのスコアに。</div>
+          <span style="display:inline-block;margin-top:8px;font-size:10px;font-weight:700;color:#0e2a40;background:#7fc4e8;padding:4px 10px;border-radius:14px">前回より +6</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="6">
+          <a href="#v-conditions" style="display:flex;flex-direction:column;gap:9px;padding:16px;border-radius:14px;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)">
+            <div style="width:40px;height:40px;border-radius:11px;background:rgba(46,155,214,.18);display:flex;align-items:center;justify-content:center;color:var(--ac)">{{ t.icon }}</div>
+            <div><div style="font-weight:700;font-size:13.5px;color:#fff">{{ t.title }}</div><div style="font-size:10px;color:#9fc0d6;margin-top:2px">{{ t.sub }}</div></div>
+          </a>
+        </sc-for>
+      </div>
+      <a href="#v-conditions" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;background:var(--ac);color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:14px;text-decoration:none;min-height:52px;box-shadow:0 10px 24px rgba(46,155,214,.35)">人生を整えはじめる <span style="font-size:17px">→</span></a>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 03 — 6 CONDITIONS ===== -->
+  <section data-screen-label="コンディション" id="v-conditions" style="padding:38px 20px;background:#fff">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">3回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7c93a4;font-weight:600">6 CONDITIONS</span></div>
+    <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0 0 8px;color:#0e2a40;line-height:1.3">コンディションを<br>見える化</h2>
+    <p style="font-size:12.5px;line-height:1.8;color:#5b6b78;font-weight:500;margin:0 0 18px">お金・住まい・万が一・老後・災害・健康。<br>6つのコンディションを計測し、<br>いま整えるべきポイントを見つけます。</p>
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px">
+      <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:44px;color:var(--acd);line-height:1">65<span style="font-size:20px">%</span></div>
+      <div style="font-size:11px;color:#5b6b78;line-height:1.6"><span style="font-weight:700;color:#0e2a40">総合整い度</span><br>あと少しで「整い」維持</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px">
+      <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="6">
+        <div style="text-align:center">
+          <svg width="78" height="78" viewBox="0 0 78 78">
+            <circle cx="39" cy="39" r="31" fill="none" stroke="#e8f0f6" stroke-width="7"></circle>
+            <circle cx="39" cy="39" r="31" fill="none" stroke="{{ c.color }}" stroke-width="7" stroke-linecap="round" stroke-dasharray="194.8" stroke-dashoffset="{{ c.offset }}" transform="rotate(-90 39 39)" style="transition:stroke-dashoffset 1.5s cubic-bezier(.2,.8,.2,1)"></circle>
+            <text x="39" y="45" text-anchor="middle" font-family="'Shippori Mincho B1',serif" font-weight="800" font-size="19" fill="#0e2a40">{{ c.pct }}</text>
+          </svg>
+          <div style="font-size:11.5px;font-weight:700;color:#37485a;margin-top:4px">{{ c.name }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 04 — 道場・学びプログラム ===== -->
+  <section data-screen-label="隼人甲子園" id="v-studio" style="position:relative;padding:38px 22px;background:linear-gradient(170deg,#0a1c2c,#0e2a40);color:#fff;overflow:hidden">
+    <div class="hy-grain" style="opacity:.08"></div>
+    <div style="position:relative">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">4回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7fc4e8;font-weight:600">STUDIO — 道場</span></div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:30px;margin:0 0 10px">隼人甲子園</h2>
+      <p style="font-size:13px;line-height:1.85;color:#cfe0ec;margin:0 0 18px;font-weight:500">凡事徹底、チームづくり、自立型育成、勝負哲学。<br>水谷監督が積み上げてきた指導を、<br>あなたの学びのメニューに。</p>
+      <a href="#v-studio" style="display:block;text-decoration:none;position:relative;border-radius:16px;overflow:hidden;background:#0a1620;min-height:170px;margin-bottom:16px">
+        <img src="assets/rise-koshien.jpg" alt="甲子園" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,20,30,.92) 4%,rgba(8,20,30,.3) 46%,transparent 78%)"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px">
+          <div style="font-size:10px;letter-spacing:.2em;color:#7fc4e8">RISE STORY</div>
+          <div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:20px;margin-top:4px;text-shadow:0 2px 10px rgba(0,0,0,.6)">頂点へ続く、道。</div>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:10px;margin:2px 0 12px">
+        <span style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:16px;color:#fff">横浜隼人高等学校　野球部の教え</span>
+        <span style="flex:1;height:1px;background:rgba(127,196,232,.28)"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ studio }}" as="s" hint-placeholder-count="5">
+          <a href="#v-studio" style="display:flex;align-items:center;gap:14px;padding:15px;border-radius:13px;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)">
+            <div style="flex:1"><div style="font-weight:700;font-size:14.5px;color:#fff">{{ s.title }}</div><div style="font-size:11px;color:#9fc0d6;margin-top:2px">{{ s.sub }}</div></div>
+            <span style="font-size:11px;font-weight:700;color:var(--ac);white-space:nowrap">{{ s.action }} →</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 05 — 特典映像 ===== -->
+  <section data-screen-label="特典映像" id="v-bonus" style="padding:34px 0;background:#f6fafd">
+    <div style="padding:0 20px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">5回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7c93a4;font-weight:600">BONUS</span></div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0 0 4px;color:#0e2a40">特典映像</h2>
+      <div style="font-size:11.5px;color:#5b6b78;font-weight:500">会員限定の特典映像。横にスワイプ →</div>
+    </div>
+    <div style="display:flex;gap:13px;overflow-x:auto;padding:4px 20px 8px;scroll-snap-type:x mandatory">
+      <sc-for list="{{ bonus }}" as="v" hint-placeholder-count="4">
+        <a href="#v-bonus" style="flex:none;width:240px;scroll-snap-align:start;text-decoration:none">
+          <div style="position:relative;width:240px;height:138px;border-radius:14px;overflow:hidden;background:{{ v.bg }};box-shadow:0 8px 18px rgba(14,42,64,.16)">
+            <div style="position:absolute;inset:0;background-image:url('{{ v.img }}');background-size:cover;background-position:{{ v.pos }}"></div>
+            <div class="hy-grain" style="opacity:.12"></div>
+            <div style="position:absolute;top:10px;left:10px;background:rgba(8,20,30,.6);color:#fff;font-size:9px;font-weight:700;padding:4px 8px;border-radius:5px">{{ v.tag }}</div>
+            <div style="position:absolute;bottom:10px;right:10px;background:rgba(8,20,30,.6);color:#fff;font-size:9px;font-weight:600;padding:3px 7px;border-radius:5px">{{ v.len }}</div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center"><div style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid #0e2a40;margin-left:3px"></div></div>
+          </div>
+          <div style="font-weight:700;font-size:13px;color:#0e2a40;margin-top:9px;line-height:1.4">{{ v.title }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 06 — 講演・イベント ===== -->
+  <section data-screen-label="イベント" id="v-events" style="padding:36px 20px;background-image:linear-gradient(180deg,rgba(247,243,236,.55) 0%,rgba(247,243,236,.4) 40%,rgba(247,243,236,.62) 100%),url('assets/events-hayato.jpg');background-size:cover;background-position:center top;background-attachment:local">
+    <div style="display:inline-flex;flex-direction:column;gap:10px;background:rgba(255,255,255,.82);backdrop-filter:blur(2px);border-radius:12px;padding:11px 14px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:11px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">6回表</span><span style="font-size:10px;letter-spacing:.2em;color:#5b6b78;font-weight:600">EVENTS</span></div>
+    <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0;color:#0e2a40">講演・実技イベント</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ events }}" as="e" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:13px;padding:16px;border:1px solid rgba(255,255,255,.45);border-radius:14px;background:rgba(255,255,255,.38);backdrop-filter:blur(7px);box-shadow:0 3px 10px rgba(14,42,64,.08)">
+          <div style="flex:1">
+            <div style="font-weight:700;font-size:14px;color:#0e2a40;line-height:1.4">{{ e.title }}</div>
+            <div style="font-size:11px;color:#5b6b78;margin-top:4px">{{ e.meta }}</div>
+          </div>
+          <a href="#v-events" style="flex:none;font-size:12px;font-weight:700;color:var(--acd);background:#eef6fb;border:1px solid #cfe6f5;padding:9px 14px;border-radius:11px;text-decoration:none">{{ e.cta }}</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 07 — 次世代育成 ===== -->
+  <section data-screen-label="次世代育成" id="v-impact" style="position:relative;padding:40px 22px;background:linear-gradient(160deg,#15486e,#0a1c2c);color:#fff;overflow:hidden">
+    <div class="hy-grain" style="opacity:.1"></div>
+    <div style="position:relative">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">7回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7fc4e8;font-weight:600">IMPACT</span></div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:28px;margin:0 0 12px">次世代育成プロジェクト</h2>
+      <p style="font-size:13px;line-height:1.85;color:#cfe0ec;margin:0 0 18px;font-weight:500">あなたの応援が、次の世代の球児を育てます。<br>會費や活動の一部は、<br>ジュニア育成と球児支援へ。<br>逆境を消化する力を、次の世代へ。</p>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px;margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px">
+          <div><div style="font-size:10px;color:#9fc0d6">2026年 球児応援基金</div><div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:22px">¥3,420,000</div></div>
+          <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:18px;color:#7fc4e8">68%</div>
+        </div>
+        <div style="height:9px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden"><div style="height:100%;border-radius:6px;background:var(--ac);width:{{ rankW }};transition:width 1.4s cubic-bezier(.2,.8,.2,1)"></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+        <sc-for list="{{ impact }}" as="i" hint-placeholder-count="2">
+          <div style="display:flex;align-items:center;gap:13px;padding:14px;border-radius:13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)">
+            <div style="width:42px;height:42px;border-radius:11px;background:rgba(46,155,214,.16);border:1px solid rgba(127,196,232,.3);display:flex;align-items:center;justify-content:center;font-family:'Shippori Mincho B1',serif;font-weight:800;color:#7fc4e8;flex:none">{{ i.kanji }}</div>
+            <div style="font-size:13.5px;font-weight:600;color:#eaf3f9">{{ i.title }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <a href="#v-impact" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ac);color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:14px;text-decoration:none;min-height:52px;box-shadow:0 10px 24px rgba(46,155,214,.35)">プロジェクトに参加する <span style="font-size:17px">→</span></a>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 08 — 会員限定ショップ ===== -->
+  <section data-screen-label="ショップ" id="v-store" style="padding:36px 0;background:#f6fafd">
+    <div style="padding:0 20px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">8回表</span><span style="font-size:10px;letter-spacing:.2em;color:#7c93a4;font-weight:600">STORE</span></div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0 0 4px;color:#0e2a40">会員限定ショップ</h2>
+      <div style="font-size:11.5px;color:#5b6b78;font-weight:500">くらしを支えるマーケットと、隼人オリジナルグッズ・教材。</div>
+    </div>
+    <div style="padding:0 20px;display:flex;flex-direction:column;gap:11px;margin-bottom:18px">
+      <a href="#v-store" style="display:flex;align-items:center;gap:14px;padding:15px;background:#fff;border:1.5px solid #e2ecf3;border-radius:14px;text-decoration:none;box-shadow:0 3px 10px rgba(14,42,64,.05)">
+        <div style="width:52px;height:52px;border-radius:12px;background:var(--ac);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;flex:none"><span style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:17px;line-height:1">90%</span><span style="font-size:8px">OFF</span></div>
+        <div style="flex:1"><div style="font-size:10px;color:var(--acd);font-weight:700">会員特価マーケット</div><div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:16px;color:#0e2a40">隼人MARKET</div><div style="font-size:11px;color:#5b6b78;margin-top:1px">日用品・食料品が最大 90%OFF。</div></div>
+        <span style="color:var(--ac);font-size:18px">›</span>
+      </a>
+      <a href="#v-store" style="display:flex;align-items:center;gap:14px;padding:15px;background:#fff;border:1.5px solid #e2ecf3;border-radius:14px;text-decoration:none;box-shadow:0 3px 10px rgba(14,42,64,.05)">
+        <div style="width:52px;height:52px;border-radius:12px;background:#fff;border:1px solid #e2ecf3;display:flex;align-items:center;justify-content:center;flex:none;padding:4px"><img src="assets/hayato-logo-t.png" alt="隼人CLUB" style="width:100%;height:100%;object-fit:contain" /></div>
+        <div style="flex:1"><div style="font-size:10px;color:var(--acd);font-weight:700">OFFICIAL</div><div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:16px;color:#0e2a40">隼人 公式ストア</div><div style="font-size:11px;color:#5b6b78;margin-top:1px">グッズ・書籍・教材・道具。</div></div>
+        <span style="color:var(--ac);font-size:18px">›</span>
+      </a>
+    </div>
+    <div style="display:flex;gap:13px;overflow-x:auto;padding:0 20px 6px;scroll-snap-type:x mandatory">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+        <div style="flex:none;width:172px;scroll-snap-align:start">
+          <div style="position:relative;width:172px;height:172px;border-radius:14px;overflow:hidden;background:{{ p.bg }};box-shadow:0 8px 18px rgba(14,42,64,.14)">
+            <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}">
+              {{ p.imgEl }}
+            </sc-if>
+            <div style="position:absolute;top:10px;left:10px;background:{{ p.tagbg }};color:#fff;font-size:9px;font-weight:700;padding:4px 8px;border-radius:5px">{{ p.tag }}</div>
+          </div>
+          <div style="font-weight:700;font-size:12.5px;color:#0e2a40;margin-top:8px;line-height:1.4">{{ p.name }}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15px;color:#0e2a40">{{ p.price }}</div>
+            <button style="font-size:10px;font-weight:700;color:#fff;background:var(--ac);border:none;padding:7px 12px;border-radius:9px;cursor:pointer">CART</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VERSE 09 — 階級とバッジ ===== -->
+  <section data-screen-label="階級とバッジ" id="v-rank" style="padding:36px 20px 30px;background-image:linear-gradient(180deg,rgba(246,250,253,.5) 0%,rgba(246,250,253,.4) 45%,rgba(246,250,253,.6) 100%),url('assets/rank-bg.png');background-size:cover;background-position:center top;background-attachment:local">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px"><span style="background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:5px 9px;border-radius:5px">9回表</span><span style="font-size:10px;letter-spacing:.2em;color:#0e2a40;font-weight:600">RANK & BADGE</span></div>
+    <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:25px;margin:0 0 8px;color:#0e2a40">階級とバッジ</h2>
+    <p style="font-size:12.5px;line-height:1.85;color:#5b6b78;font-weight:500;margin:0 0 18px">入部から殿堂まで、八つの位。<br>一段ごとに一つの精神を受け取り、勝ち上がって頂点へ向かう。</p>
+
+    <div style="position:relative">
+      <!-- 段 一〜五 -->
+      <sc-for list="{{ danLevels }}" as="d" hint-placeholder-count="5">
+        <div style="display:flex;gap:14px">
+          <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center">
+            <div style="width:44px;height:44px;border-radius:50%;background:{{ d.badgeBg }};box-shadow:{{ d.badgeShadow }};display:flex;align-items:center;justify-content:center;font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:#fff">{{ d.badge }}</div>
+            <div style="width:2px;flex:1;background:{{ d.railColor }};margin-top:2px"></div>
+          </div>
+          <div style="flex:1;padding-bottom:12px">
+            <div style="background:{{ d.cardBg }};border:{{ d.cardBorder }};border-radius:13px;padding:11px 14px;display:flex;align-items:center;gap:10px">
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                  <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15.5px;color:{{ d.nameColor }};letter-spacing:.03em">{{ d.nameFull }}</div>
+                  <div style="font-size:10px;font-weight:700;color:{{ d.statusColor }};background:{{ d.statusBg }};padding:3px 9px;border-radius:20px;white-space:nowrap">{{ d.status }}</div>
+                </div>
+                <div style="display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:10.5px"><span style="color:#8296a5">精神</span><span style="font-family:'Shippori Mincho B1',serif;font-weight:700;color:#0e2a40">{{ d.spirit }}</span></div>
+              </div>
+              <sc-if value="{{ d.badgeEl }}" hint-placeholder-val="{{ false }}">
+                {{ d.badgeEl }}
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+
+      <!-- ゲージ：春への道 (五 → ★) -->
+      <div style="display:flex;gap:14px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f0c078,#c9761f);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(200,120,40,.4)">⚔</div>
+          <div style="width:2px;flex:1;background:#e5b877;margin-top:2px"></div>
+        </div>
+        <div style="flex:1;padding-bottom:12px">
+          <div style="position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(160deg,#123a5a,#0a1c2c);border:1px solid rgba(240,192,120,.34);padding:15px 15px 16px;color:#fff">
+            <div class="hy-grain" style="opacity:.1"></div>
+            <div style="position:relative">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <span style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15px;color:#f5cf94">春への道</span>
+                <span style="font-size:9.5px;font-weight:800;color:#0e2a40;background:#f5cf94;padding:2px 9px;border-radius:12px">五 → ★</span>
+              </div>
+              <div style="font-size:10.5px;color:#bcd6e8;line-height:1.6;margin-bottom:15px">秋を勝ち上がり、選抜の頂点へ。<span style="color:#f5cf94;font-weight:700">決勝を勝てば ★ が解放。</span></div>
+              <div style="position:relative;width:100%;max-width:296px;margin:6px auto 0;aspect-ratio:320/300">
+                <svg viewBox="0 0 320 300" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
+                  <polygon points="160,258 262,150 160,42 58,150" fill="rgba(70,140,88,.16)" stroke="rgba(255,255,255,.1)" stroke-width="1.5"></polygon>
+                  <polygon points="160,214 222,150 160,86 98,150" fill="rgba(196,132,72,.16)"></polygon>
+                  <polyline points="160,258 262,150 160,42 58,150 160,258" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="2.5" stroke-dasharray="3 5"></polyline>
+                  <sc-for list="{{ springBoard.segs }}" as="g" hint-placeholder-count="4">
+                    <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="{{ g.color }}" stroke-width="{{ g.w }}" stroke-linecap="round"></line>
+                  </sc-for>
+                  <circle cx="160" cy="150" r="10" fill="rgba(196,132,72,.28)" stroke="rgba(255,255,255,.14)" stroke-width="1"></circle>
+                </svg>
+                <sc-for list="{{ springBoard.bases }}" as="b" hint-placeholder-count="4">
+                  <div style="position:absolute;left:{{ b.posX }};top:{{ b.posY }};transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;width:78px">
+                    <div style="width:27px;height:27px;border-radius:6px;transform:rotate(45deg);background:{{ b.chipBg }};border:{{ b.chipBorder }};box-shadow:{{ b.chipShadow }};display:flex;align-items:center;justify-content:center">
+                      <span style="transform:rotate(-45deg);font-size:13px;font-weight:800;color:{{ b.markColor }};line-height:1">{{ b.mark }}</span>
+                    </div>
+                    <div style="font-size:9.5px;font-weight:800;color:{{ b.labelColor }};line-height:1.2;text-align:center">{{ b.label }}</div>
+                    <div style="font-family:'Yomogi',cursive;font-size:8px;color:{{ b.spiritColor }};line-height:1.15;text-align:center">{{ b.spirit }}</div>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ springBoard.flag }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;left:{{ springBoard.flag.x }};top:{{ springBoard.flag.y }};transform:translate(-50%,-50%);z-index:3;background:linear-gradient(135deg,#E0913B,#c9761f);color:#fff;font-size:8.5px;font-weight:800;line-height:1.3;padding:4px 8px;border-radius:8px;text-align:center;box-shadow:0 4px 10px rgba(200,120,40,.4);white-space:nowrap">{{ springBoard.flag.text }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;margin-top:-2px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:2px;flex:1;background:#e5b877"></div></div>
+        <div style="flex:1;padding-bottom:12px">
+          <button onClick="{{ openSpring }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#E0913B,#c9761f);color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;box-shadow:0 8px 20px rgba(200,120,40,.38)">▶ 決勝を勝つ — ★解放演出を見る</button>
+        </div>
+      </div>
+
+      <!-- ★ 春・選抜制覇 -->
+      <div style="display:flex;gap:14px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f5cf94,#d98a3a);display:flex;align-items:center;justify-content:center;font-size:18px;color:#7a4410;box-shadow:0 4px 12px rgba(200,120,40,.4)">★</div>
+          <div style="width:2px;flex:1;background:#e5b877;margin-top:2px"></div>
+        </div>
+        <div style="flex:1;padding-bottom:12px">
+          <div style="border-radius:13px;padding:12px 14px;background:linear-gradient(160deg,#fdf3e2,#f7e2bd);border:1.5px solid #eac583">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15.5px;color:#6e4410;letter-spacing:.03em">★ 春・選抜制覇</div>
+              <div style="font-size:10px;font-weight:700;color:#9a7a3a;background:#fff;border:1px solid #eac583;padding:3px 9px;border-radius:20px;white-space:nowrap">🔒 未解放</div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px"><span style="color:#a9852f">精神</span><span style="font-family:'Shippori Mincho B1',serif;font-weight:700;color:#6e4410">球道即人道（前編）</span></span>
+              <span style="font-size:9.5px;font-weight:800;color:#7a4410;background:#f2d59a;padding:2px 9px;border-radius:12px">第一の頂点</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ゲージ：夏への道 (★ → ★★) -->
+      <div style="display:flex;gap:14px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#9a8560,#5f4d2e);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 9px rgba(60,45,20,.3)">⚔</div>
+          <div style="width:2px;flex:1;background:#d9c19a;margin-top:2px"></div>
+        </div>
+        <div style="flex:1;padding-bottom:12px">
+          <div style="position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(160deg,#10202e,#0a141c);border:1px solid rgba(217,193,154,.24);padding:15px 15px 16px;color:#fff">
+            <div class="hy-grain" style="opacity:.08"></div>
+            <div style="position:relative">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <span style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15px;color:#e3cfa4">夏への道</span>
+                <span style="font-size:9.5px;font-weight:800;color:#2a2013;background:#d9c19a;padding:2px 9px;border-radius:12px">★ → ★★</span>
+                <span style="font-size:9px;font-weight:700;color:#9fb2c0">🔒 ★到達で開始</span>
+              </div>
+              <div style="font-size:10.5px;color:#93a9b8;line-height:1.6;margin-bottom:15px">夏を勝ち上がり、甲子園の頂点へ。<span style="color:#e3cfa4;font-weight:700">決勝を勝てば ★★ が解放。</span></div>
+              <div style="position:relative;width:100%;max-width:296px;margin:6px auto 0;aspect-ratio:320/300">
+                <svg viewBox="0 0 320 300" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
+                  <polygon points="160,258 262,150 160,42 58,150" fill="rgba(70,140,88,.12)" stroke="rgba(255,255,255,.08)" stroke-width="1.5"></polygon>
+                  <polygon points="160,214 222,150 160,86 98,150" fill="rgba(196,132,72,.12)"></polygon>
+                  <polyline points="160,258 262,150 160,42 58,150 160,258" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2.5" stroke-dasharray="3 5"></polyline>
+                  <sc-for list="{{ summerBoard.segs }}" as="g" hint-placeholder-count="4">
+                    <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="{{ g.color }}" stroke-width="{{ g.w }}" stroke-linecap="round"></line>
+                  </sc-for>
+                  <circle cx="160" cy="150" r="10" fill="rgba(196,132,72,.22)" stroke="rgba(255,255,255,.1)" stroke-width="1"></circle>
+                </svg>
+                <sc-for list="{{ summerBoard.bases }}" as="b" hint-placeholder-count="4">
+                  <div style="position:absolute;left:{{ b.posX }};top:{{ b.posY }};transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;width:78px">
+                    <div style="width:27px;height:27px;border-radius:6px;transform:rotate(45deg);background:{{ b.chipBg }};border:{{ b.chipBorder }};box-shadow:{{ b.chipShadow }};display:flex;align-items:center;justify-content:center">
+                      <span style="transform:rotate(-45deg);font-size:13px;font-weight:800;color:{{ b.markColor }};line-height:1">{{ b.mark }}</span>
+                    </div>
+                    <div style="font-size:9.5px;font-weight:800;color:{{ b.labelColor }};line-height:1.2;text-align:center">{{ b.label }}</div>
+                    <div style="font-family:'Yomogi',cursive;font-size:8px;color:{{ b.spiritColor }};line-height:1.15;text-align:center">{{ b.spirit }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;margin-top:-2px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:2px;flex:1;background:#d9c19a"></div></div>
+        <div style="flex:1;padding-bottom:12px">
+          <button onClick="{{ openSummer }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#3a2f1a,#1c150a);color:#e3cfa4;border:1px solid rgba(217,193,154,.55);padding:12px;border-radius:12px;font-weight:700;font-size:12.5px;cursor:pointer;box-shadow:0 6px 16px rgba(20,15,6,.3)">▶ ★★解放演出をプレビュー</button>
+        </div>
+      </div>
+
+      <!-- ★★ 夏・甲子園制覇 -->
+      <div style="display:flex;gap:14px">
+        <div style="width:44px;flex:none;display:flex;flex-direction:column;align-items:center">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f7d793,#c9761f);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#6e3d0c;box-shadow:0 5px 14px rgba(200,120,40,.45)">★★</div>
+        </div>
+        <div style="flex:1">
+          <div style="border-radius:13px;padding:12px 14px;background:linear-gradient(160deg,#fbeccf,#f2d296);border:1.5px solid #e2b45f">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15.5px;color:#5f3a0d;letter-spacing:.03em">★★ 夏・甲子園制覇</div>
+              <div style="font-size:10px;font-weight:700;color:#8a6522;background:#fff;border:1px solid #e2b45f;padding:3px 9px;border-radius:20px;white-space:nowrap">🔒 未解放</div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px"><span style="color:#9a7325">精神</span><span style="font-family:'Shippori Mincho B1',serif;font-weight:700;color:#5f3a0d">球道即人道（体現）</span></span>
+              <span style="font-size:9.5px;font-weight:800;color:#6e3d0c;background:#ecc575;padding:2px 9px;border-radius:12px">最高位</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ★★★ 名将・殿堂（頂点の先・ゲージではない） -->
+    <div style="position:relative;overflow:hidden;border-radius:16px;padding:18px;margin-top:14px;background:linear-gradient(155deg,#1c1305,#2c1d09 52%,#402c11);border:1px solid rgba(240,192,120,.42);box-shadow:0 12px 30px rgba(30,20,6,.28);color:#fff">
+      <div class="hy-grain" style="opacity:.12"></div>
+      <svg viewBox="0 0 120 120" style="position:absolute;right:-24px;top:-24px;width:150px;opacity:.14"><circle cx="60" cy="60" r="58" fill="none" stroke="#f5cf94" stroke-width="2"></circle></svg>
+      <div style="position:relative">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+          <div>
+            <div style="font-size:16px;letter-spacing:.16em;color:#f5cf94;margin-bottom:5px">★★★</div>
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:18px;letter-spacing:.04em">名将・殿堂</div>
+          </div>
+          <div style="font-size:9.5px;font-weight:800;color:#3a2810;background:#f5cf94;padding:4px 10px;border-radius:12px;white-space:nowrap">頂点の先</div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:10.5px"><span style="color:#c8a86f">精神</span><span style="font-family:'Shippori Mincho B1',serif;font-weight:700;color:#f5cf94">恩送り・利他</span></div>
+        <p style="font-size:11.5px;line-height:1.8;color:#e0d2b8;font-weight:500;margin:11px 0 0">ここはゲージで上がる位ではない。<br>甲子園制覇の先、<span style="color:#fff;font-weight:700">「育てる側に回る」</span>と<br>決めた人だけが立つ。<br>ジュニア育成メンター・球児支援基金への参加で<br>解放される。</p>
+        <div style="margin-top:13px;padding-top:12px;border-top:1px solid rgba(240,192,120,.22);font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:12.5px;color:#f5cf94;letter-spacing:.03em">唯一、与えることで得る最上位。<br><span style="color:#c8a86f;font-weight:500">— これが球道即人道の完成形。</span></div>
+        <button onClick="{{ openHall }}" style="margin-top:15px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(245,207,148,.1);color:#f5cf94;border:1px solid rgba(240,192,120,.4);padding:12px;border-radius:12px;font-weight:700;font-size:12.5px;cursor:pointer">▶ 継承の灯りを見る</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL VERSE — 信条 ===== -->
+  <section data-screen-label="信条" style="position:relative;padding:44px 24px;background:#ffffff;color:#111;overflow:hidden">
+    <img src="assets/hayato-logo-t.png" alt="隼人CLUB" style="position:absolute;top:5%;left:50%;transform:translateX(-50%);width:76%;max-width:330px;object-fit:contain;opacity:.5" />
+    <div class="hy-grain" style="opacity:.05"></div>
+    <div style="position:relative">
+      <div style="display:inline-block;font-size:13px;letter-spacing:.2em;color:var(--acd);font-weight:700;margin-bottom:10px;text-shadow:0 0 12px #fff,0 0 12px #fff,0 0 8px #fff,0 0 4px #fff">9回裏 — 信条</div>
+      <h2 style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:22px;line-height:1.6;margin:0 0 22px;letter-spacing:.03em;color:#111;text-shadow:0 0 16px #fff,0 0 14px #fff,0 0 10px #fff,0 0 6px #fff">「グラウンドの精神で人生を生き抜く、最初の仲間」の誓い</h2>
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <sc-for list="{{ oaths }}" as="o" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:20px;color:var(--acd);line-height:1.3;flex:none;text-shadow:0 0 12px #fff,0 0 12px #fff,0 0 8px #fff,0 0 4px #fff">{{ o.n }}</div>
+            <div style="font-size:13.5px;line-height:1.7;color:#222;font-weight:500;text-shadow:0 0 12px #fff,0 0 12px #fff,0 0 8px #fff,0 0 4px #fff">{{ o.l1 }}<br>{{ o.l2 }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#081722;color:#7e98ab;padding:30px 24px 110px;font-size:11px;line-height:1.85">
+    <div style="text-align:center;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:15px;color:#fff;letter-spacing:.06em;margin-bottom:18px">隼人CLUB</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px 20px;margin-bottom:18px">
+      <a href="#v-home" style="color:#aac3d4;text-decoration:none">利用規約</a>
+      <a href="#v-home" style="color:#aac3d4;text-decoration:none">プライバシー</a>
+      <a href="#v-home" style="color:#aac3d4;text-decoration:none">REALIZE CLUB 連携</a>
+      <a href="#v-home" style="color:#aac3d4;text-decoration:none">お問い合わせ</a>
+    </div>
+    <div style="font-size:10px;color:#5a7388;border-top:1px solid #14303f;padding-top:16px;text-align:center">AI相談「水谷監督」は、Team・HAYATOの精神を学習したAIで、本人の発言・個別の保証ではありません。会員の悩みや不安を整理し、金融・保険・不動産・医療・法律に関する断定的な助言は行わず、必要に応じて専門家への相談につなぎます。<br><br>球道即人道。© 2026 隼人CLUB ・ REALIZE</div>
+  </footer>
+
+  <!-- ===== TONE switcher (fixed) ===== -->
+  <div style="position:fixed;bottom:74px;left:50%;transform:translateX(-215px);z-index:72;display:flex;align-items:center;gap:7px;background:#0e2a40;border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:6px 10px 6px 12px;box-shadow:0 6px 18px rgba(0,0,0,.35)">
+    <span style="font-size:8.5px;font-weight:700;letter-spacing:.14em;color:#cfe0ec">TONE</span>
+    <sc-for list="{{ tones }}" as="t" hint-placeholder-count="3">
+      <button onClick="{{ setTone }}" data-key="{{ t.key }}" aria-label="tone" style="width:18px;height:18px;border-radius:50%;background:{{ t.dot }};border:{{ t.ring }};cursor:pointer;padding:0"></button>
+    </sc-for>
+  </div>
+
+  <!-- ===== AI相談 floating ===== -->
+  <a href="#v-realize" style="position:fixed;bottom:96px;left:50%;transform:translateX(104px);z-index:72;width:99px;height:99px;border-radius:50%;overflow:hidden;box-shadow:0 8px 22px rgba(29,111,163,.55);display:block;text-decoration:none;color:#fff;border:2px solid rgba(255,255,255,.7)">
+    <img src="assets/msg-mizutani.jpg" alt="水谷監督" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%" />
+    <span style="position:absolute;left:0;right:0;bottom:0;padding:8px 0 4px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.02em;color:#111;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.9))">AI相談</span>
+  </a>
+
+  <!-- ===== bottom bar (fixed) ===== -->
+  <a href="welcome.html" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:70;background:var(--acd);color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:9px;padding:17px 16px calc(17px + env(safe-area-inset-bottom));font-weight:700;font-size:14.5px;letter-spacing:.03em;box-shadow:0 -4px 18px rgba(0,0,0,.18)">
+    <span style="font-size:13px">▶</span> 初めての方・使い方はこちら <span style="font-size:15px">›</span>
+  </a>
+
+  <!-- ===== ホームイン演出 overlay ===== -->
+  <sc-if value="{{ celebOn }}" hint-placeholder-val="{{ false }}">
+    <div class="hi-anim" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;overflow:hidden;background:{{ celeb.bg }};animation:hi-backin .3s ease both">
+
+      <!-- 春：控えめな金の灯り -->
+      <sc-if value="{{ isSpring }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:50%;bottom:0;width:440px;height:380px;background:radial-gradient(ellipse at bottom,rgba(245,207,148,.5),transparent 68%);animation:hi-bloom 1.6s cubic-bezier(.19,1,.22,1) both"></div>
+        <sc-for list="{{ motes }}" as="m" hint-placeholder-count="6">
+          <div style="position:absolute;bottom:64px;left:{{ m.left }};width:{{ m.size }};height:{{ m.size }};border-radius:50%;background:{{ m.color }};box-shadow:0 0 8px {{ m.color }};animation:hi-mote {{ m.dur }} ease-out both;animation-delay:{{ m.delay }}"></div>
+        </sc-for>
+      </sc-if>
+
+      <!-- 夏：全画面フラッシュ＋歓声＋紙吹雪 -->
+      <sc-if value="{{ isSummer }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;background:#fff;animation:hi-flash 1s cubic-bezier(.19,1,.22,1) both"></div>
+        <div style="position:absolute;left:50%;top:44%;width:120px;height:120px;border-radius:50%;border:3px solid rgba(255,224,138,.85);animation:hi-shock .9s cubic-bezier(.19,1,.22,1) both;animation-delay:.15s"></div>
+        <sc-for list="{{ confetti }}" as="c" hint-placeholder-count="8">
+          <div style="position:absolute;top:-20px;left:{{ c.left }};width:{{ c.w }};height:{{ c.h }};background:{{ c.color }};animation:hi-confetti .85s cubic-bezier(.19,1,.22,1) both;animation-delay:{{ c.delay }}"></div>
+        </sc-for>
+      </sc-if>
+
+      <!-- 殿堂：歓声を消し、静かにスタンドの光が灯る -->
+      <sc-if value="{{ isHall }}" hint-placeholder-val="{{ false }}">
+        <sc-for list="{{ towers }}" as="t" hint-placeholder-count="5">
+          <div style="position:absolute;bottom:0;left:{{ t.left }};transform:translateX(-50%);width:78px;height:64%;background:linear-gradient(to top,rgba(200,214,255,.16),transparent 82%);opacity:0;animation:hi-tower 1.5s ease both;animation-delay:{{ t.delay }}"></div>
+          <div style="position:absolute;top:14%;left:{{ t.left }};transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:#eef2ff;box-shadow:0 0 20px 6px rgba(210,222,255,.7);opacity:0;animation:hi-tower 1.5s ease both;animation-delay:{{ t.delay }}"></div>
+        </sc-for>
+      </sc-if>
+
+      <!-- 共通：解放 → 一語の余韻 -->
+      <div style="position:relative;z-index:5;text-align:center;padding:0 32px;max-width:360px">
+        <div style="font-size:60px;line-height:1;color:{{ celeb.starColor }};text-shadow:{{ celeb.glow }};animation:hi-starpop .85s cubic-bezier(.19,1,.22,1) both;animation-delay:{{ celeb.starDelay }}">{{ celeb.star }}</div>
+        <div style="display:inline-block;margin-top:18px;font-size:10px;font-weight:800;letter-spacing:.14em;color:{{ celeb.kickerColor }};background:{{ celeb.kickerBg }};padding:4px 12px;border-radius:20px;animation:hi-rise .7s cubic-bezier(.19,1,.22,1) both;animation-delay:{{ celeb.lineDelay }}">{{ celeb.kicker }}</div>
+        <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:.05em;margin-top:12px;animation:hi-rise .7s cubic-bezier(.19,1,.22,1) both;animation-delay:{{ celeb.lineDelay }}">{{ celeb.title }}</div>
+        <div style="font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:{{ celeb.lineSize }};color:{{ celeb.lineColor }};letter-spacing:.04em;margin-top:16px;line-height:1.4;animation:hi-rise .8s cubic-bezier(.19,1,.22,1) both;animation-delay:{{ celeb.lineDelay2 }}">{{ celeb.line }}</div>
+        <div style="margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);animation:hi-spirit 1.5s ease both;animation-delay:{{ celeb.spiritDelay }}">
+          <div style="font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:19px;color:{{ celeb.spiritColor }};letter-spacing:.14em">{{ celeb.spirit }}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;letter-spacing:.1em">{{ celeb.spiritSub }}</div>
+        </div>
+      </div>
+
+      <button onClick="{{ closeCeleb }}" style="position:absolute;top:18px;right:18px;z-index:6;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);padding:7px 13px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;opacity:0;animation:hi-reveal .4s ease both;animation-delay:{{ celeb.skipDelay }}">スキップ ✕</button>
+      <button onClick="{{ closeCeleb }}" style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:6;background:#fff;color:#0e2a40;border:none;padding:13px 30px;border-radius:24px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.35);opacity:0;animation:hi-reveal .5s ease both;animation-delay:{{ celeb.continueDelay }}">続ける →</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430,&quot;height&quot;:920}}">
+class Component extends DCLogic {
+  state = { scrolled: false, menuOpen: false, tone: 'sky', anim: false, celebration: null };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    setTimeout(() => this.setState({ anim: true }), 450);
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this._onScroll); }
+
+  openCeleb(tier) {
+    let seen = {};
+    try { seen = JSON.parse(localStorage.getItem('hy_celeb_seen') || '{}'); } catch (e) {}
+    this._skipDelay = seen[tier] ? '0.4s' : '3s';   // 初回は全編再生、2回目以降は早くスキップ可
+    seen[tier] = 1;
+    try { localStorage.setItem('hy_celeb_seen', JSON.stringify(seen)); } catch (e) {}
+    this.setState({ celebration: tier });
+  }
+  closeCeleb() { this.setState({ celebration: null }); }
+
+  _icon(paths) {
+    return React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      paths.map((d, i) => React.createElement('path', { key: i, d })));
+  }
+
+  renderVals() {
+    const sc = this.state.scrolled;
+    const tones = { sky: ['#2E9BD6', '#1d6fa3'], amber: ['#E0913B', '#a8621f'], indigo: ['#4f63b8', '#2c3a86'] };
+    const [ac, acd] = tones[this.state.tone] || tones.sky;
+    const anim = this.state.anim;
+
+    // gauges
+    const lifeCirc = 276.5, lifeScore = 68;
+    const condCirc = 194.8;
+    const condDefs = [
+      { name: 'お金', pct: 58 }, { name: '住まい', pct: 80 }, { name: '万が一', pct: 46 },
+      { name: '老後', pct: 41 }, { name: '災害', pct: 52 }, { name: '健康', pct: 64 },
+    ];
+    const conditions = condDefs.map(c => ({
+      name: c.name, pct: c.pct + '%', color: c.pct >= 70 ? '#2f9e6f' : (c.pct >= 50 ? ac : '#d98a3a'),
+      offset: anim ? (condCirc * (1 - c.pct / 100)).toFixed(1) : condCirc,
+    }));
+
+    // ==== 階級ラダー ====
+    const danDefs = [
+      { badge: '一', name: '入部', sub: 'ルーキー', spirit: '至誠', state: 'done' },
+      { badge: '二', name: '球拾い・素振り', sub: '', spirit: '凡事徹底', state: 'done' },
+      { badge: '三', name: 'ベンチ入り', sub: '背番号獲得', spirit: '主体変容', state: 'done' },
+      { badge: '四', name: 'レギュラー', sub: 'スタメン', spirit: '利他の心', state: 'done' },
+      { badge: '五', name: '主将・エース', sub: '', spirit: '大志', state: 'current' },
+    ];
+    const danLevels = danDefs.map(d => {
+      const cur = d.state === 'current';
+      return {
+        badge: d.badge,
+        badgeEl: cur ? React.createElement('img', { src: 'assets/badge-shusho.png', alt: '主将バッジ', style: { width: '58px', height: '58px', objectFit: 'contain', flex: 'none', filter: 'drop-shadow(0 3px 7px rgba(210,160,50,.5))' } }) : null,
+        showKanji: !cur,
+        nameFull: d.sub ? d.name + '（' + d.sub + '）' : d.name,
+        spirit: d.spirit,
+        badgeBg: cur ? 'linear-gradient(135deg,' + ac + ',' + acd + ')' : acd,
+        badgeShadow: cur ? '0 6px 16px rgba(46,155,214,.5)' : '0 2px 6px rgba(14,42,64,.2)',
+        status: cur ? '現在地' : '達成',
+        statusColor: cur ? acd : '#2f9e6f',
+        statusBg: cur ? '#dceefb' : '#e5f3ec',
+        cardBg: cur ? 'linear-gradient(160deg,#eaf6fc,#d3ebf8)' : '#f6fafd',
+        cardBorder: cur ? '1.5px solid ' + ac : '1.5px solid #e8eef3',
+        nameColor: cur ? '#0e2a40' : '#37485a',
+        railColor: '#cfe0ec',
+      };
+    });
+
+    // ==== 野球ダイヤモンド盤面 ====
+    // 塁の並び：一塁(右)→二塁(上)→三塁(左)→本塁(下＝得点＝★解放)
+    const BASEPOS = [ {x:'82%',y:'50%'}, {x:'50%',y:'14%'}, {x:'18%',y:'50%'}, {x:'50%',y:'86%'} ];
+    const SVGPOS  = [ {x:262,y:150}, {x:160,y:42}, {x:58,y:150}, {x:160,y:258} ];
+    const mkBoard = (raw, ac, flag) => {
+      const maxReached = raw.reduce((m,s,i)=> (s.state==='done'||s.state==='current') ? i : m, -1);
+      const order = [3,0,1,2,3]; // 本塁を起点に一周
+      const segs = [];
+      for (let i=0;i<4;i++){
+        const endIdx = order[i+1];
+        const done = endIdx!==3 ? endIdx<=maxReached : raw[3].state==='done';
+        const a = SVGPOS[order[i]], b = SVGPOS[endIdx];
+        segs.push({ x1:a.x, y1:a.y, x2:b.x, y2:b.y, color: done?ac.line:'rgba(255,255,255,.13)', w: done?5:3 });
+      }
+      const bases = raw.map((s,i)=>{
+        const done = s.state==='done', cur = s.state==='current', home = i===3;
+        return {
+          label: s.label, sub: s.sub, spirit: s.spirit,
+          posX: BASEPOS[i].x, posY: BASEPOS[i].y,
+          chipBg: done ? ac.done : (cur ? '#fff' : (home ? 'rgba(23,58,82,.9)' : '#173a52')),
+          chipBorder: cur ? '2.5px solid '+ac.ring : (done ? 'none' : (home ? '1.5px solid '+ac.line : '1.5px solid rgba(255,255,255,.24)')),
+          chipShadow: cur ? '0 0 0 5px '+ac.glow : (done ? '0 3px 8px rgba(0,0,0,.32)' : 'none'),
+          mark: home ? '★' : (done ? '✓' : ''),
+          markColor: done ? '#fff' : (cur ? ac.ring : (home ? ac.line : 'rgba(255,255,255,.5)')),
+          labelColor: (done||cur) ? '#fff' : (home ? ac.line : 'rgba(255,255,255,.55)'),
+          spiritColor: (done||cur) ? ac.spirit : 'rgba(255,255,255,.32)',
+          runner: cur,
+        };
+      });
+      return { segs, bases, flag: flag || null };
+    };
+    const springAc = { line:'#f5cf94', done:'linear-gradient(135deg,#f0c078,#c9761f)', ring:'#f5cf94', glow:'rgba(245,207,148,.32)', spirit:'#f5cf94' };
+    const summerAc = { line:'#e3cfa4', done:'linear-gradient(135deg,#c8b184,#7a6438)', ring:'#e3cfa4', glow:'rgba(227,207,164,.28)', spirit:'#e3cfa4' };
+    const springBoard = mkBoard([
+      { label:'秋を勝ち上がる', sub:'県→地区', spirit:'天国ことば', state:'done' },
+      { label:'センバツ選出', sub:'選考通過', spirit:'不動の軸', state:'done' },
+      { label:'本戦', sub:'初戦→4強', spirit:'一意専心', state:'current' },
+      { label:'決勝', sub:'あと1勝', spirit:'勝負魂', state:'locked' },
+    ], springAc, { text:'あと1勝で\u2009ホームイン→★', x:'34%', y:'70%' });
+    const summerBoard = mkBoard([
+      { label:'夏予選', sub:'県制覇', spirit:'平常心', state:'locked' },
+      { label:'甲子園出場', sub:'全国へ', spirit:'感謝', state:'locked' },
+      { label:'本戦', sub:'初戦→4強', spirit:'全力疾走', state:'locked' },
+      { label:'決勝', sub:'頂点へ', spirit:'有言実行', state:'locked' },
+    ], summerAc, null);
+
+    // ==== ホームイン演出（★解放） ====
+    if (!this._motes) {
+      this._motes = Array.from({ length: 11 }, (_, i) => ({
+        left: ((6 + i * 8) % 96) + '%', size: (4 + (i % 3) * 2) + 'px',
+        delay: (0.15 + i * 0.1).toFixed(2) + 's', dur: (1.5 + (i % 4) * 0.3).toFixed(2) + 's',
+        color: i % 2 ? '#f5cf94' : '#E0913B',
+      }));
+      this._confetti = Array.from({ length: 26 }, (_, i) => ({
+        left: ((i * 37) % 100) + '%', w: (5 + (i % 3) * 2) + 'px', h: (8 + (i % 2) * 4) + 'px',
+        delay: (0.03 + (i % 6) * 0.05).toFixed(2) + 's',
+        color: ['#ffd66b', '#ffffff', '#2E9BD6', '#E0913B', '#ffffff'][i % 5],
+      }));
+      this._towers = ['8%', '29%', '50%', '71%', '92%'].map((l, i) => ({ left: l, delay: (0.6 + i * 0.42).toFixed(2) + 's' }));
+    }
+    const tier = this.state.celebration;
+    const celebMap = {
+      spring: { bg: 'radial-gradient(120% 90% at 50% 82%, rgba(224,145,59,.34), #0a1c2c 60%)', starColor: '#f5cf94', glow: '0 0 42px rgba(245,207,148,.85)', star: '★', title: '春・選抜制覇', kicker: '第一の頂点', kickerBg: '#f5cf94', kickerColor: '#5f3a0d', line: '春を、獲った。', lineSize: '26px', lineColor: '#ffe9c4', spirit: '球道即人道', spiritSub: '― 前編', spiritColor: '#f5cf94', starDelay: '.95s', lineDelay: '1.2s', lineDelay2: '1.45s', spiritDelay: '2.7s', continueDelay: '3.5s' },
+      summer: { bg: 'radial-gradient(120% 100% at 50% 55%, rgba(255,190,120,.26), #0a1c2e 52%, #06121f)', starColor: '#ffe08a', glow: '0 0 74px rgba(255,214,120,.95)', star: '★★', title: '夏・甲子園制覇', kicker: '最高位', kickerBg: '#ffd66b', kickerColor: '#5f3a0d', line: 'あの夏。', lineSize: '42px', lineColor: '#ffffff', spirit: '球道即人道', spiritSub: '― 体現', spiritColor: '#ffe08a', starDelay: '.55s', lineDelay: '.9s', lineDelay2: '1.15s', spiritDelay: '2.7s', continueDelay: '3.5s' },
+      hall: { bg: 'radial-gradient(120% 120% at 50% 38%, rgba(66,72,96,.4), #05070c 62%, #030407)', starColor: '#e8ecff', glow: '0 0 30px rgba(200,214,255,.5)', star: '★★★', title: '名将・殿堂', kicker: '頂点の先', kickerBg: 'rgba(232,236,255,.92)', kickerColor: '#20242f', line: '戦う者から、見守る者へ。', lineSize: '21px', lineColor: '#d7dcea', spirit: '恩送り・利他', spiritSub: '次の世代へ', spiritColor: '#e8ecff', starDelay: '1.3s', lineDelay: '1.8s', lineDelay2: '2.2s', spiritDelay: '3.2s', continueDelay: '4.0s' },
+    };
+    const celeb = tier ? Object.assign({}, celebMap[tier], { skipDelay: this._skipDelay || '3s' }) : {};
+
+    const toneList = ['sky', 'amber', 'indigo'].map(k => ({
+      key: k, dot: tones[k][0],
+      ring: this.state.tone === k ? '2px solid #fff' : '2px solid transparent',
+    }));
+
+    const productDefs = [
+      { tag: 'BOOK', tagbg: 'rgba(8,20,30,.6)', name: 'TEAM HAYATO の精神（書籍）', price: '¥2,200', img: 'assets/goods-book.png', pos: 'center 20%', bg: '#1a1206' },
+      { tag: 'LIMITED', tagbg: '#E0913B', name: '球道即人道 フーディ（限定）', price: '¥8,800', img: 'assets/goods-hoodie.png', pos: 'center 30%', bg: '#111' },
+      { tag: 'APPAREL', tagbg: 'rgba(8,20,30,.6)', name: '隼人クラブ 公式ドライTシャツ', price: '¥4,800', img: 'assets/goods-tshirt.png', pos: '28% center', bg: '#0e2a40' },
+    ];
+    const products = productDefs.map(p => Object.assign({}, p, {
+      imgEl: React.createElement('img', { src: p.img, alt: p.name, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.pos } }),
+    }));
+
+    return {
+      ac, acd,
+      headerBg: sc ? 'rgba(255,255,255,.94)' : 'rgba(255,255,255,.82)',
+      headerBorder: sc ? '#e2ecf3' : 'rgba(226,236,243,.5)',
+      headerPad: sc ? '9px 16px' : '13px 16px',
+      markSize: sc ? '50px' : '56px',
+      markFont: sc ? '16px' : '18px',
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      setTone: (e) => this.setState({ tone: e.currentTarget.dataset.key }),
+      tones: toneList,
+
+      rankW: anim ? '65%' : '0%',
+      scoreOffset: anim ? (lifeCirc * (1 - lifeScore / 100)).toFixed(1) : lifeCirc,
+      conditions,
+
+      quick: [
+        { label: '人生を整える', href: '#v-realize', bg: 'rgba(255,255,255,.07)' },
+        { label: '学んで成長する', href: '#v-studio', bg: 'rgba(255,255,255,.07)' },
+        { label: '人生診断を始める', href: '#v-conditions', bg: 'rgba(255,255,255,.07)' },
+        { label: '水谷監督に相談', href: '#v-realize', bg: 'rgba(255,255,255,.07)' },
+      ],
+
+      tasks: [
+        { icon: '⚾', title: '限定動画を3本視聴', sub: 'あと1本で「至誠」を維持', reward: '凡事バッジ', status: '2 / 3', stColor: '#0e2a40', iconbg: '#e8f4fb' },
+        { icon: '📊', title: 'コンディションを見える化', sub: '6領域の整い度を確認', reward: '実践バッジ', status: '進行中', stColor: '#1d6fa3', iconbg: '#eaf6ee' },
+        { icon: '📝', title: '人生設計書を作成', sub: '未来を整える第一歩', reward: '設計者バッジ', status: '未着手', stColor: '#9aa9b5', iconbg: '#fdf3e6' },
+      ],
+
+      tools: [
+        { title: '性格波形診断', sub: '自分のタイプ', icon: this._icon(['M3 12h3l2 6 4-14 2 8h7']) },
+        { title: '隼人MARKET', sub: '日用品 最大90%OFF', icon: this._icon(['M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z', 'M3 6h18', 'M16 10a4 4 0 01-8 0']) },
+        { title: '学習コンテンツ', sub: '人生100年の生き方', icon: this._icon(['M4 5h12a2 2 0 012 2v12', 'M4 5v13a1 1 0 001 1h13', 'M8 9h6', 'M8 13h6']) },
+        { title: '人生設計コンテンツ', sub: '未来を設計する', icon: this._icon(['M3 18l6-6 4 4 8-8', 'M21 8v5', 'M21 8h-5']) },
+        { title: '水谷監督に相談', sub: '悩みを整理', icon: this._icon(['M21 11.5a8.4 8.4 0 01-9 8 9 9 0 01-4-1L3 20l1.5-5a8.4 8.4 0 01-1-4 8.5 8.5 0 0117 0z']) },
+        { title: '人生相談窓口', sub: '専門家へつなぐ', icon: this._icon(['M16 21v-2a4 4 0 00-8 0v2', 'M12 11a4 4 0 100-8 4 4 0 000 8z', 'M20 8v6', 'M23 11h-6']) },
+      ],
+
+      studio: [
+        { kanji: '凡', title: '凡事徹底', sub: '当たり前を、当たり前に', action: '学ぶ' },
+        { kanji: '組', title: 'チームづくり', sub: '自立型人間の育て方', action: '読む' },
+        { kanji: '育', title: '家庭での育成', sub: '声かけ・感謝・我慢', action: '体験する' },
+        { kanji: '勝', title: '勝負哲学', sub: '九回二死で折れない', action: '読む' },
+        { kanji: '設', title: '人生設計ワーク', sub: '学びを人生設計に変える', action: '設計する' },
+      ],
+
+      bonus: [
+        { tag: '密着', title: '夏前、最後の全体練習', len: '7:00', bg: 'linear-gradient(160deg,#1d6fa3,#0a1c2c)', img: 'assets/video-micchaku.jpg', pos: 'center center' },
+        { tag: '会員限定', title: '主体変容 ― 敵は自分自身', len: '5:42', bg: 'linear-gradient(160deg,#2b6f9c,#102a40)', img: 'assets/video-shutai.avif', pos: 'center 30%' },
+        { tag: '対談', title: '指導者が語る、育てるとは', len: '12:30', bg: 'linear-gradient(160deg,#16466a,#0a1620)', img: 'assets/video-taidan.jpg', pos: 'center center' },
+        { tag: 'Team・HAYATO', title: '天国ことばの習慣', len: '4:18', bg: 'linear-gradient(160deg,#3a8fbf,#13344b)', img: 'assets/video-tengoku.webp', pos: 'center 18%' },
+      ],
+
+      events: [
+        { title: '講演会｜人生の第2ステージの作り方', meta: '2026.07.12 (土) ・ 横浜', cta: '申し込む' },
+        { title: '指導者勉強会｜凡事徹底の落とし込み', meta: '2026.06.28 (日) 20:00〜 オンライン', cta: '予約する' },
+        { title: '個別面談｜ライフメイクプランナー', meta: 'オンライン ・ 随時受付', cta: '相談を予約' },
+      ],
+
+      impact: [
+        { kanji: '球', title: '球児支援・道具寄贈プロジェクト' },
+        { kanji: '街', title: '地域のジュニア育成・居場所づくり' },
+      ],
+
+      products,
+
+      danLevels,
+      springBoard, summerBoard,
+      springFillW: anim ? '50%' : '0%',
+      celebOn: !!tier, isSpring: tier === 'spring', isSummer: tier === 'summer', isHall: tier === 'hall',
+      celeb, motes: this._motes, confetti: this._confetti, towers: this._towers,
+      openSpring: () => this.openCeleb('spring'),
+      openSummer: () => this.openCeleb('summer'),
+      openHall: () => this.openCeleb('hall'),
+      closeCeleb: () => this.closeCeleb(),
+
+      oaths: [
+        { n: '一', l1: '私は、人生設計が当たり前にできる', l2: '社会を信じます。' },
+        { n: '二', l1: '私は、次世代に「生き方」を学ぶ', l2: '場所を提供します。' },
+        { n: '三', l1: '私は、影響力を自分のためだけでなく、', l2: '未来のために使います。' },
+        { n: '四', l1: '私は、REALIZE の思想に共感し、', l2: '人生支援文化の創造に参加します。' },
+      ],
+    };
+  }
+}
+</script>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#0a1c2c"/><circle cx="50" cy="50" r="24" fill="none" stroke="#f5cf94" stroke-width="3"/><text x="50" y="60" font-family="serif" font-size="30" font-weight="800" fill="#f5cf94" text-anchor="middle">隼</text></svg>
+</template>
+</body>
+</html>
